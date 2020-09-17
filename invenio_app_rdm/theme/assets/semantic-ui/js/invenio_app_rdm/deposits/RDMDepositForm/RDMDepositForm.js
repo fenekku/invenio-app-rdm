@@ -21,6 +21,8 @@ import {
 } from "react-invenio-deposit";
 import { AccordionField, ErrorMessage } from "react-invenio-forms";
 
+import { APIErrorHandler} from "./APIErrorHandler"
+
 function fakeInitialRecord(backendRecord) {
   /** Returns the initialRecord with experimental changes.
    * Used to group trial changes.
@@ -102,6 +104,7 @@ export class RDMDepositForm extends Component {
   constructor(props) {
     super(props);
     this.config = props.config || {};
+    this.apiErrorHandler = new APIErrorHandler();
     const record = defaultize(fakeInitialRecord(props.record));
     this.state = {
       record: record || {},
@@ -153,7 +156,7 @@ export class RDMDepositForm extends Component {
     };
 
     return (
-      <DepositFormApp config={this.config} record={this.state.record}>
+      <DepositFormApp config={this.config} record={this.state.record} apiErrorHandler={this.apiErrorHandler}>
         <ErrorMessage fieldPath="message" />
         <Grid>
           <Grid.Column width={12}>
