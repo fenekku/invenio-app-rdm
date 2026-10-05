@@ -65,7 +65,7 @@ dependencies = [
 
   # Invenio-App-RDM
   "cairosvg>=2.5.2,<3.0.0",
-  "invenio-administration>=7.3.0,<8.0.0",
+  "invenio-administration>=7.2.0,<8.0.0",
   "invenio-audit-logs>=4.0.0,<5.0.0",
   "invenio-banners>=8.0.0,<9.0.0",
   "invenio-collections>=10.0.0,<11.0.0",
@@ -107,9 +107,14 @@ invenio_app_rdm_theme = "invenio_app_rdm.theme.webpack:theme"
 
 [project.entry-points."invenio_base.api_apps"]
 profiler = "invenio_app_rdm.ext:MultiProfiler"
+invenio_app_rdm = "invenio_app_rdm.ext:InvenioAppRDM"
+
+[project.entry-points."invenio_base.api_blueprints"]
+invenio_app_rdm_administration_moderation_requests = "invenio_app_rdm.views:create_administration_moderation_requests_bp"
 
 [project.entry-points."invenio_base.apps"]
 profiler = "invenio_app_rdm.ext:MultiProfiler"
+invenio_app_rdm = "invenio_app_rdm.ext:InvenioAppRDM"
 
 [project.entry-points."invenio_base.blueprints"]
 invenio_app_rdm = "invenio_app_rdm.theme.views:create_blueprint"

@@ -12,7 +12,6 @@ from invenio_administration.views.base import (
 )
 from invenio_i18n import lazy_gettext as _
 from invenio_i18n.ext import current_i18n
-from invenio_rdm_records.requests import RecordDeletion
 from invenio_requests.proxies import current_requests
 from invenio_search_ui.searchconfig import search_app_config
 from invenio_users_resources.proxies import current_user_resources
@@ -23,8 +22,8 @@ from marshmallow_utils.fields.babel import gettext_from_dict
 class ModerationRequestListView(AdminResourceListView):
     """Requests moderation admin search view."""
 
-    api_endpoint = "/requests"  # DEPRECATED. Remove in v15
-    api_endpoint_name = "requests.search"
+    api_endpoint = "/administration/moderation/requests"  # DEPRECATED. Remove in v15
+    api_endpoint_name = "invenio_app_rdm_administration_moderation_requests.search"
     extension_name = "invenio-requests"
     name = "requests"
     resource_config = "requests_resource"
@@ -89,7 +88,6 @@ class ModerationRequestListView(AdminResourceListView):
             initial_filters=[["is_open", "true"]],
             hidden_params=[
                 ["expand", "1"],
-                ["type", RecordDeletion.type_id],
             ],
             pagination_options=(20, 50),
             default_size=20,
